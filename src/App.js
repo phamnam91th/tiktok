@@ -1,6 +1,21 @@
 import "./App.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Provider } from 'react-redux';
+import store from './store';
+import UserProfile from './UserProfile';
+
+function App() {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <h1>My App</h1>
+        <UserProfile />
+      </div>
+    </Provider>
+  );
+}
+
 
 // function App() {
 //   const [counter, setCounter] = useState(2)
@@ -198,76 +213,76 @@ import axios from 'axios';
 //   );
 // }
 
-function App() {
-  const [student, setStudent] = useState({
-    name: '',
-    age: '',
-    className: ''
-  });
+// function App() {
+//   const [student, setStudent] = useState({
+//     name: '',
+//     age: '',
+//     className: ''
+//   });
 
-  const handleInputChange = (e) => {
-    setStudent({
-      ...student,
-      [e.target.name]: e.target.value,
-    });
-  };
+//   const handleInputChange = (e) => {
+//     setStudent({
+//       ...student,
+//       [e.target.name]: e.target.value,
+//     });
+//   };
 
-  console.log(student)
+//   console.log(student)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
 
-    const form = new FormData();
+//     const form = new FormData();
     
     
 
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*',
-      }
-    }
+//     let config = {
+//       headers: {
+//         "Content-Type": "application/json",
+//         'Access-Control-Allow-Origin': '*',
+//       }
+//     }
     
 
 
-    // Gọi API POST để chèn sinh viên mới
-    axios
-      .post('https://localhost:7087/api/Student', student, config)
-      .then((response) => {
-        console.log('Sinh viên đã được thêm:', response.data);
-      })
-      .catch((error) => {
-        console.error('Lỗi khi thêm sinh viên:', error);
-      });
-  };
+//     // Gọi API POST để chèn sinh viên mới
+//     axios
+//       .post('https://localhost:7087/api/Student', student, config)
+//       .then((response) => {
+//         console.log('Sinh viên đã được thêm:', response.data);
+//       })
+//       .catch((error) => {
+//         console.error('Lỗi khi thêm sinh viên:', error);
+//       });
+//   };
 
-  return (
-    <div>
-      <h2>Thêm Sinh Viên</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Tên Sinh Viên:
-            <input type="text" name="name" onChange={handleInputChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Tuổi Sinh Viên:
-            <input type="number" name="age" onChange={handleInputChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Class Name:
-            <input type="text" name="className" onChange={handleInputChange} />
-          </label>
-        </div>
+//   return (
+//     <div>
+//       <h2>Thêm Sinh Viên</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <label>
+//             Tên Sinh Viên:
+//             <input type="text" name="name" onChange={handleInputChange} />
+//           </label>
+//         </div>
+//         <div>
+//           <label>
+//             Tuổi Sinh Viên:
+//             <input type="number" name="age" onChange={handleInputChange} />
+//           </label>
+//         </div>
+//         <div>
+//           <label>
+//             Class Name:
+//             <input type="text" name="className" onChange={handleInputChange} />
+//           </label>
+//         </div>
         
-        <button type="submit">Thêm</button>
-      </form>
-    </div>
-  );
-}
+//         <button type="submit">Thêm</button>
+//       </form>
+//     </div>
+//   );
+// }
 
 export default App;
